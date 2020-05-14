@@ -12,4 +12,9 @@ __start:
 	add	x1, sp, #0x0008
 	add	x2, x1, x0, lsl #3
 	add	x2, x2, #0x0008
-	b	___start
+
+	/* call main function */
+	bl	main
+
+	/* exit program */
+	b	exit

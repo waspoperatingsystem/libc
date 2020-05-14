@@ -6,7 +6,7 @@ INCLUDE = $(PWD)/include
 SRC = $(PWD)/src
 CRT = $(PWD)/crt
 BUILD = $(PWD)/build
-INT_CFLAGS = -I$(INCLUDE) -Os -g0 -pipe
+INT_CFLAGS = -I$(INCLUDE) -Ofast -g0 -pipe
 
 OBJ = $(SRC)/abort.o \
 	$(SRC)/memcmp.o \
@@ -20,7 +20,7 @@ OBJ = $(SRC)/abort.o \
 	$(SRC)/strlcpy.o \
 	$(SRC)/strlen.o
 
-CRT0 = $(CRT)/$(ARCH)/crt0.o
+CRTS = $(CRT)/$(ARCH)/crt0.o
 
 all: create_build crts libc.a
 
@@ -36,8 +36,8 @@ create_build: clean
 libc.a: $(OBJ)
 	$(AR) rcs $(BUILD)/$@ $(OBJ)
 
-crts: $(CRT0)
+crts: $(CRTS)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(CRTS)
 	rm -rf $(BUILD)
