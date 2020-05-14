@@ -13,6 +13,8 @@ OBJ = $(SRC)/abort.o \
 	$(SRC)/memmove.o \
 	$(SRC)/memset.o \
 	$(SRC)/printf.o \
+	$(SRC)/putchar.o \
+	$(SRC)/puts.o \
 	$(SRC)/strlcat.o \
 	$(SRC)/strlcpy.o \
 	$(SRC)/strlen.o
