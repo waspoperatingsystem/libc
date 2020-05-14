@@ -12,6 +12,7 @@ OBJ = $(SRC)/abort.o \
 	$(SRC)/memcpy.o \
 	$(SRC)/memmove.o \
 	$(SRC)/memset.o \
+	$(SRC)/printf.o \
 	$(SRC)/strlcat.o \
 	$(SRC)/strlcpy.o \
 	$(SRC)/strlen.o
