@@ -4,8 +4,9 @@ AR ?= ar
 
 INCLUDE = $(PWD)/include
 SRC = $(PWD)/src
+CRT = $(PWD)/crt
 BUILD = $(PWD)/build
-INT_CFLAGS = -I$(INCLUDE) -std=gnu18 -Ofast -g0 -pipe
+INT_CFLAGS = -I$(INCLUDE) -Os -g0 -pipe
 
 OBJ = $(SRC)/abort.o \
 	$(SRC)/memcmp.o \
@@ -19,7 +20,9 @@ OBJ = $(SRC)/abort.o \
 	$(SRC)/strlcpy.o \
 	$(SRC)/strlen.o
 
-all: libc.a
+CRT0 = $(CRT)/$(ARCH)/crt0.o
+
+all: create_build crts libc.a
 
 create_build: clean
 	mkdir -p $(BUILD)
@@ -30,8 +33,10 @@ create_build: clean
 .S.o:
 	$(CC) -MD -c $< -o $@ $(CPPFLAGS) $(INT_CFLAGS) $(CFLAGS)
 
-libc.a: create_build $(OBJ)
+libc.a: $(OBJ)
 	$(AR) rcs $(BUILD)/$@ $(OBJ)
+
+crts: $(CRT0)
 
 clean:
 	rm -f $(OBJ)
