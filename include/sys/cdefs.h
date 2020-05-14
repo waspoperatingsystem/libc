@@ -1,5 +1,8 @@
 /*	$waspOS: cdefs.h,v 1.0 2020/05/14 00:00:00 protonesso Exp $	*/
 
+#ifndef	_SYS_CDEFS_H_
+#define	_SYS_CDEFS_H_
+
 #include <sys/wasp.h>
 
 #define	__attribute__(x)
@@ -22,4 +25,6 @@
 
 #if !defined(DEF_WEAK)
 #define DEF_WEAK(x)
+#endif
+
 #endif
