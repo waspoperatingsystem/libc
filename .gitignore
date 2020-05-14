@@ -1,1 +1,5 @@
+build/
+libc.a
 *.gch
+*.o
+*.d
