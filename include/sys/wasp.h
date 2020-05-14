@@ -15,4 +15,6 @@
 				__attribute__((alias (HIDDEN_STRING(src))))
 #define	__relro			__attribute__((section(".data.rel.ro")))
 
+extern const char *__progname;
+
 #endif

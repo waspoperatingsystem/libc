@@ -1,10 +1,11 @@
-/*	$waspOS: string.h,v 1.0 2020/05/14 00:00:00 protonesso Exp $	*/
-/*	$OpenBSD: string.h,v 1.32 2017/09/05 03:16:13 schwarze Exp $	*/
-/*	$NetBSD: string.h,v 1.6 1994/10/26 00:56:30 cgd Exp $	*/
-
+/*	$waspOS: memset.c,v 1.0 2020/05/14 00:00:00 protonesso Exp $	*/
+/*	$OpenBSD: memset.c,v 1.8 2017/11/29 05:13:57 guenther Exp $ */
 /*-
  * Copyright (c) 1990 The Regents of the University of California.
  * All rights reserved.
+ *
+ * This code is derived from software contributed to Berkeley by
+ * Chris Torek.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -29,29 +30,20 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
- *
- *	@(#)string.h	5.10 (Berkeley) 3/9/91
  */
 
-#ifndef _STRING_H_
-#define	_STRING_H_
+#include <string.h>
 
-#include <sys/cdefs.h>
-#include <stddef.h>
+void *
+memset(void *dst, int c, size_t n)
+{
+	if (n != 0) {
+		unsigned char *d = dst;
 
-int	 memcmp(const void *, const void *, size_t);
-void	*memcpy(void *__restrict, const void *__restrict, size_t)
-		__attribute__ ((__bounded__(__buffer__,1,3)))
-		__attribute__ ((__bounded__(__buffer__,2,3)));
-void	*memmove(void *, const void *, size_t)
-		__attribute__ ((__bounded__(__buffer__,1,3)))
-		__attribute__ ((__bounded__(__buffer__,2,3)));
-void	*memset(void *, int, size_t)
-		__attribute__ ((__bounded__(__buffer__,1,3)));
-size_t	 strlcat(char *, const char *, size_t)
-		__attribute__ ((__bounded__(__string__,1,3)));
-size_t	 strlcpy(char *, const char *, size_t)
-		__attribute__ ((__bounded__(__string__,1,3)));
-size_t	 strlen(const char *);
-
-#endif
+		do
+			*d++ = (unsigned char)c;
+		while (--n != 0);
+	}
+	return (dst);
+}
+DEF_BUILTIN(memset);

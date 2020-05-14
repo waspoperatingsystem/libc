@@ -4,6 +4,7 @@
 #define	_SYS_CDEFS_H_
 
 #include <sys/wasp.h>
+#include <sys/_types.h>
 
 #define	__attribute__(x)
 #define __dead		__attribute__((__noreturn__))
