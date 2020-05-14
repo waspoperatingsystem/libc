@@ -127,7 +127,7 @@ typedef	struct __sFILE {
 } FILE;
 
 __BEGIN_DECLS
-FILE __sF[];
+extern FILE __sF[];
 __END_DECLS
 
 #define	__SLBF	0x0001		/* line buffered */
